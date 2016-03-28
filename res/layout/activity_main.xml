@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NewItemFragment"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:name="com.changeme.todolist.NewItemFragment"
+        />
+    <ExpandableListView 
+        android:id="@+id/categoryTaskList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:cacheColorHint="#00000000" 
+        android:divider="@null" 
+        ></ExpandableListView>
+	<com.changeme.todolist.view.SlideListView
+	    android:id="@+id/slideTaskList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent">
+	</com.changeme.todolist.view.SlideListView>
+	
+</LinearLayout>

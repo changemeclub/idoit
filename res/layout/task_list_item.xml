@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/new_task"
+    android:padding="10dp"
+    android:background="#ffffff"
+    >
+    
+
+    <ImageView
+        android:id="@+id/taskStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/training_plan"
+        android:layout_alignParentLeft="true" 
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/taskName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/taskStatus"
+        android:layout_toLeftOf="@+id/isCompleted"
+        android:text="任务名称任务名称任务名称任务名称"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/taskTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:layout_below="@id/taskName"
+        android:layout_toRightOf="@id/taskStatus"
+        android:layout_toLeftOf="@+id/isCompleted"
+        android:textColor="@color/head_text_color"
+        android:drawableLeft="@drawable/clock"
+        android:text="十分钟后"
+        />
+	
+    <CheckBox
+        android:id="@+id/isCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        />
+
+</RelativeLayout>
