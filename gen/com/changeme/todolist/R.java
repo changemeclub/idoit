@@ -67,29 +67,28 @@ public final class R {
     }
     public static final class id {
         public static final int NewItemFragment=0x7f0d0001;
-        public static final int action_add=0x7f0d0014;
-        public static final int action_settings=0x7f0d0013;
-        public static final int add_new_item=0x7f0d0007;
-        public static final int asyncProgress=0x7f0d0005;
-        public static final int asyncTextView=0x7f0d0004;
-        public static final int categoryTaskList=0x7f0d0002;
+        public static final int action_add=0x7f0d0013;
+        public static final int action_settings=0x7f0d0012;
+        public static final int add_new_item=0x7f0d0006;
+        public static final int asyncProgress=0x7f0d0004;
+        public static final int asyncTextView=0x7f0d0003;
         public static final int fragment_contactSearch=0x7f0d0000;
-        public static final int isCompleted=0x7f0d000d;
-        public static final int label_taskinfo_today=0x7f0d000f;
-        public static final int label_taskinfo_today_complete=0x7f0d0011;
-        public static final int menu_refresh=0x7f0d0016;
-        public static final int menu_search=0x7f0d0015;
-        public static final int menu_share=0x7f0d0017;
-        public static final int new_item_submit_btn=0x7f0d0009;
-        public static final int new_task=0x7f0d000a;
-        public static final int number_today=0x7f0d0010;
-        public static final int number_today_complete=0x7f0d0012;
-        public static final int one_status_name=0x7f0d0006;
-        public static final int slideTaskList=0x7f0d0003;
-        public static final int speechButton=0x7f0d0008;
-        public static final int taskName=0x7f0d000c;
-        public static final int taskStatus=0x7f0d000b;
-        public static final int taskTime=0x7f0d000e;
+        public static final int isCompleted=0x7f0d000c;
+        public static final int label_taskinfo_today=0x7f0d000e;
+        public static final int label_taskinfo_today_complete=0x7f0d0010;
+        public static final int menu_refresh=0x7f0d0015;
+        public static final int menu_search=0x7f0d0014;
+        public static final int menu_share=0x7f0d0016;
+        public static final int new_item_submit_btn=0x7f0d0008;
+        public static final int new_task=0x7f0d0009;
+        public static final int number_today=0x7f0d000f;
+        public static final int number_today_complete=0x7f0d0011;
+        public static final int one_status_name=0x7f0d0005;
+        public static final int slideTaskList=0x7f0d0002;
+        public static final int speechButton=0x7f0d0007;
+        public static final int taskName=0x7f0d000b;
+        public static final int taskStatus=0x7f0d000a;
+        public static final int taskTime=0x7f0d000d;
     }
     public static final class layout {
         public static final int activity_contact_search=0x7f040000;

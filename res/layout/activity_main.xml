@@ -15,13 +15,7 @@
         android:layout_marginBottom="15dp"
         android:name="com.changeme.todolist.NewItemFragment"
         />
-    <ExpandableListView 
-        android:id="@+id/categoryTaskList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:cacheColorHint="#00000000" 
-        android:divider="@null" 
-        ></ExpandableListView>
+ 
 	<com.changeme.todolist.view.SlideListView
 	    android:id="@+id/slideTaskList"
         android:layout_width="match_parent"

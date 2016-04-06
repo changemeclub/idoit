@@ -55,8 +55,6 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
     private TaskListAdapter listAdapter;
     private ArrayList<ToDoTask> taskList;
     private SlideListView taskListView;
-    private ExpandableListView expandlistView;
-    private TaskListGroupAdapter statusAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,55 +73,8 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
     private void initView(){
         initTaskListView();
         initTaskLoader();
-        initExpandListView();
     }
-    private void initExpandListView() {
-        statusAdapter = new TaskListGroupAdapter(this, getListData());
-        expandlistView=(ExpandableListView)findViewById(R.id.categoryTaskList);
-        expandlistView.setAdapter(statusAdapter);
-        expandlistView.setGroupIndicator(null); // 去掉默认带的箭头
-        expandlistView.setSelection(0);// 设置默认选中项
-
-        // 遍历所有group,将所有项设置成默认展开
-        int groupCount = expandlistView.getCount();
-        for (int i = 0; i < groupCount; i++) {
-            expandlistView.expandGroup(i);
-        }
-
-        expandlistView.setOnGroupClickListener(new OnGroupClickListener() {
-
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
-                return true;
-            }
-        });
-    }
-
-    private List<GroupStatusEntity> getListData() {
-        List<GroupStatusEntity> groupList;
-        String[] strArray = new String[]{"过期任务", "待完成任务"};
-        String[][] childTimeArray = new String[][]{
-                {"俯卧撑十次", "仰卧起坐二十次", "大喊我爱紫豪二十次", "每日赞紫豪一次"},
-                {"亲，快快滴点赞哦~"}, {"没有赞的，赶紧去赞哦~"}};
-        groupList = new ArrayList<GroupStatusEntity>();
-        for (int i = 0; i < strArray.length; i++) {
-            GroupStatusEntity groupStatusEntity = new GroupStatusEntity();
-            groupStatusEntity.setGroupName(strArray[i]);
-
-            List<ToDoTask> childList = new ArrayList<ToDoTask>();
-
-            for (int j = 0; j < childTimeArray[i].length; j++) {
-                ToDoTask childStatusEntity = new ToDoTask();
-                childStatusEntity.setName(childTimeArray[i][j]);
-                childList.add(childStatusEntity);
-            }
-
-            groupStatusEntity.setChildList(childList);
-            groupList.add(groupStatusEntity);
-        }
-        return groupList;
-    }
+    
     private void initTaskListView(){
         taskList=new ArrayList<ToDoTask>();
         listAdapter=new TaskListAdapter(this,R.layout.task_list_item,taskList);
@@ -133,18 +84,7 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
 			@Override
 			//TODO 右划弹出退后界面
 			public void removeItem(RemoveDirection direction, int position) {
-				listAdapter.remove(listAdapter.getItem(position));
-				switch (direction) {
-				case RIGHT:
-					Toast.makeText(MainActivity.this, "向右删除  "+ position, Toast.LENGTH_SHORT).show();
-					break;
-				case LEFT:
-					Toast.makeText(MainActivity.this, "向左删除  "+ position, Toast.LENGTH_SHORT).show();
-					break;
-
-				default:
-					break;
-				}
+//				listAdapter.remove(listAdapter.getItem(position));
 			}
         	
         });
