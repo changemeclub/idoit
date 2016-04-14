@@ -4,8 +4,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.changeme.todolist.R;
+import com.changeme.todolist.TaskCompleteListener;
 import com.changeme.todolist.model.ToDoTask;
 
 /**
@@ -23,9 +24,10 @@ import com.changeme.todolist.model.ToDoTask;
 public class TaskListAdapter extends ArrayAdapter<ToDoTask> {
     private int resourceId;
     private Context context;
-    private TaskInfoHolder taskHolder;
+//    private TaskInfoHolder taskHolder;
+    private TaskCompleteListener taskCompleteListener;
 
-    public TaskListAdapter(Context context, int resource, List<ToDoTask> objects) {
+	public TaskListAdapter(Context context, int resource, List<ToDoTask> objects) {
         super(context, resource, objects);
         this.resourceId=resource;
         this.context=context;
@@ -33,21 +35,19 @@ public class TaskListAdapter extends ArrayAdapter<ToDoTask> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout todoView;
         final ToDoTask toDoTask=getItem(position);
         String taskString=toDoTask.getName();
-        
+        final TaskInfoHolder taskHolder;
         if (convertView==null){
-            todoView=new LinearLayout(context);
             String inflater=Context.LAYOUT_INFLATER_SERVICE;
             LayoutInflater layoutInflater;
             layoutInflater=(LayoutInflater)getContext().getSystemService(inflater);
-            convertView=layoutInflater.inflate(resourceId,todoView,true);
+            convertView=layoutInflater.inflate(resourceId,null);
             taskHolder=new TaskInfoHolder();
-            taskHolder.isCompletedCb=(CheckBox)todoView.findViewById(R.id.isCompleted);
-            taskHolder.taskStatusImg=(ImageView)todoView.findViewById(R.id.taskStatus);
-            taskHolder.taskNameTv=(TextView)todoView.findViewById(R.id.taskName);
-            taskHolder.taskTimeTv=(TextView)todoView.findViewById(R.id.taskTime);
+            taskHolder.isCompletedCb=(CheckBox)convertView.findViewById(R.id.isCompleted);
+            taskHolder.taskStatusImg=(ImageView)convertView.findViewById(R.id.taskStatus);
+            taskHolder.taskNameTv=(TextView)convertView.findViewById(R.id.taskName);
+            taskHolder.taskTimeTv=(TextView)convertView.findViewById(R.id.taskTime);
             convertView.setTag(taskHolder);
         }else {
             taskHolder = (TaskInfoHolder)convertView.getTag();
@@ -59,17 +59,35 @@ public class TaskListAdapter extends ArrayAdapter<ToDoTask> {
         TextView taskTime=taskHolder.getTaskTimeTv();
         taskTime.setText("asd");
         taskTime.setTextColor(Color.GRAY);
-        convertView.setOnTouchListener(new View.OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View view, MotionEvent event) {
-				if(event.getAction()==MotionEvent.ACTION_MOVE){
-					
+        
+        CheckBox isCompletedCb=taskHolder.getIsCompletedCb();
+        isCompletedCb.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				if(((CheckBox)view).isChecked()){
+					toggleItemStatus(true,taskHolder.getTaskNameTv());
+					toDoTask.setCompleted(ToDoTask.IS_COMPLETE);
+					taskCompleteListener.onTaskStatusChange(toDoTask);
+				}else{
+					toggleItemStatus(false,taskHolder.getTaskNameTv());
+					toDoTask.setCompleted(ToDoTask.IS_NOT_COMPLETE);
+					taskCompleteListener.onTaskStatusChange(toDoTask);
 				}
-				return false;
 			}
 		});
         return convertView;
+    }
+    
+    /**
+     * toggle 所选择任务的显示效果
+     */
+    private void toggleItemStatus(Boolean checked,TextView itemView){
+    	if(checked){
+    		itemView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+    		itemView.setTextColor(Color.LTGRAY);
+    	}else{
+    		itemView.getPaint().setStrikeThruText(false);
+    		itemView.setTextColor(Color.BLACK);
+    	}
     }
     
     class TaskInfoHolder {
@@ -103,4 +121,13 @@ public class TaskListAdapter extends ArrayAdapter<ToDoTask> {
 		}
     	
     }
+    
+    public TaskCompleteListener getTaskCompleteListener() {
+		return taskCompleteListener;
+	}
+
+	public void setTaskCompleteListener(TaskCompleteListener taskCompleteListener) {
+		this.taskCompleteListener = taskCompleteListener;
+	}
+
 }

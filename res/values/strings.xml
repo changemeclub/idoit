@@ -25,5 +25,19 @@
     
     <string name="task_name_example">开始阅读《必然》这本书</string>
     <string name="task_time_example">10分钟后</string>
+    <string name="todo_list_tab">待做事项</string>
+    <string name="done_list_tab">干得漂亮</string>
+    
+    <!-- 下拉刷新配置项  ，注意这里要写注释 -->
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
 
 </resources>

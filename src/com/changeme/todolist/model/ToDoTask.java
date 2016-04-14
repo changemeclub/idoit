@@ -15,6 +15,8 @@ public class ToDoTask {
     private int completed;//整个任务完成状态，是否完成
     private int todayIsDo;//今天是否完成
     private int habbit;//是否是习惯
+    public static int IS_COMPLETE=1;
+    public static int IS_NOT_COMPLETE=0;
 
     public ToDoTask(){
 

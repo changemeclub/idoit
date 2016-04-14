@@ -18,7 +18,6 @@ public class SlideListView extends ListView {
 	 */
 	private int slidePosition=-100;
 	
-	private View slideItemView;
 	/**
 	 * 手指按下X的坐标
 	 */
@@ -218,13 +217,6 @@ public class SlideListView extends ListView {
 			// 让ListView item根据当前的滚动偏移量进行滚动
 			itemView.scrollTo(scroller.getCurrX(), scroller.getCurrY());
 			postInvalidate();
-			// 滚动动画结束的时候调用回调接口
-			if (scroller.isFinished()) {
-				if (mRemoveListener == null) {
-					throw new NullPointerException("RemoveListener is null, we should called setRemoveListener()");
-				}
-				mRemoveListener.removeItem(removeDirection, slidePosition);
-			}
 		}
 	}
 

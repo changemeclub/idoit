@@ -5,23 +5,61 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     >
-    <fragment
+    	<!-- 支持所有实现Pullable接口的View -->
+        <LinearLayout 
+        android:id="@+id/pageTab"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/NewItemFragment"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
-        android:name="com.changeme.todolist.NewItemFragment"
-        />
- 
-	<com.changeme.todolist.view.SlideListView
-	    android:id="@+id/slideTaskList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:listSelector="@android:color/transparent"
-        android:cacheColorHint="@android:color/transparent">
-	</com.changeme.todolist.view.SlideListView>
-	
+        >
+	       <TextView 
+	           android:id="@+id/todoListTab"
+	           android:layout_width="wrap_content"
+	           android:layout_height="30dp"
+	           android:layout_weight="1"
+	           android:text="@string/todo_list_tab"
+	           android:background="@color/btn_pressed_color"
+	           android:gravity="center"/>
+	        <TextView 
+	           android:id="@+id/doneListTab"
+	           android:layout_width="wrap_content"
+	           android:layout_height="30dp"
+	           android:layout_weight="1"
+	           android:text="@string/done_list_tab"
+	           android:background="@color/btn_normal_color"
+	           android:gravity="center"/>
+	    </LinearLayout>
+	    <fragment
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/NewItemFragment"
+	        android:layout_marginTop="20dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginRight="20dp"
+	        android:layout_marginBottom="15dp"
+	        android:name="com.changeme.todolist.NewItemFragment"
+	        />
+	  <com.changeme.todolist.view.PullableLayout 
+        android:id="@+id/refresh_view"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent">
+    	<include layout="@layout/refresh_head" />
+		<com.changeme.todolist.view.SlideListView
+		    android:id="@+id/slideTaskList"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" 
+	        android:listSelector="@android:color/transparent"
+	        android:cacheColorHint="@android:color/transparent">
+		</com.changeme.todolist.view.SlideListView>
+		<TextView 
+	           android:id="@+id/doneListTab"
+	           android:layout_width="wrap_content"
+	           android:layout_height="30dp"
+	           android:layout_weight="1"
+	           android:text="@string/done_list_tab"
+	           android:background="@color/btn_normal_color"
+	           />
+		
+    </com.changeme.todolist.view.PullableLayout>
+    
 </LinearLayout>

@@ -2,7 +2,6 @@ package com.changeme.todolist;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -17,23 +16,21 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.SearchView;
 import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.changeme.todolist.adapter.TaskListAdapter;
-import com.changeme.todolist.adapter.TaskListGroupAdapter;
-import com.changeme.todolist.model.GroupStatusEntity;
 import com.changeme.todolist.model.ToDoTask;
 import com.changeme.todolist.sql.ToDoContentProvider;
+import com.changeme.todolist.view.PullableLayout;
+import com.changeme.todolist.view.PullableLayout.OnRefreshListener;
 import com.changeme.todolist.view.SlideListView;
-import com.changeme.todolist.view.SlideListView.RemoveDirection;
-import com.changeme.todolist.view.SlideListView.RemoveListener;
 
 /**
  * 两个页面，待办工作及干的漂亮
@@ -55,19 +52,43 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
     private TaskListAdapter listAdapter;
     private ArrayList<ToDoTask> taskList;
     private SlideListView taskListView;
+    private ContentResolver contentResolver;
+    private PullableLayout pullableLayout;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initData();
         initView();
-        //TODO
-        /**
-         * 1、初始化listview界面
-         * 2、查询数据库
-         * 3、更新listview数据
-         * 13598793603
-         */
+        initEvent();      
+    }
+    
+    //初始化事件
+    private void initEvent(){
+        listAdapter.setTaskCompleteListener(new TaskCompleteListener(){
+   			@Override
+   			public void onTaskStatusChange(ToDoTask item) {
+   				 ContentValues contentValues=new ContentValues();
+   			     contentValues.put(ToDoContentProvider.IS_COMPLETED_COLUMN,item.isCompleted());
+   			     contentResolver.update(ToDoContentProvider.CONTENT_URI,contentValues,ToDoContentProvider.NAME_COLUMN+"='"+item.getName()+"'",null);
+   			}
+           });
+        
+        pullableLayout.setOnRefreshListener(new OnRefreshListener(){
+			@Override
+			public void onRefresh() {
+				getLoaderManager().restartLoader(0,null,MainActivity.this);
+			}
+        	
+        });
+    }
+    
+    //初始化数据
+    private void initData(){
+    	contentResolver=getContentResolver();
+    	handler=new Handler();
     }
 
     private void initView(){
@@ -80,14 +101,7 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
         listAdapter=new TaskListAdapter(this,R.layout.task_list_item,taskList);
         taskListView=(SlideListView)findViewById(R.id.slideTaskList);
         taskListView.setAdapter(listAdapter);
-        taskListView.setRemoveListener(new RemoveListener(){
-			@Override
-			//TODO 右划弹出退后界面
-			public void removeItem(RemoveDirection direction, int position) {
-//				listAdapter.remove(listAdapter.getItem(position));
-			}
-        	
-        });
+        pullableLayout=(PullableLayout)findViewById(R.id.refresh_view);
     }
 
     private void initTaskLoader(){
@@ -97,8 +111,7 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
     @Override
     public void onAddNewItem(ToDoTask item) {
         if(item==null) return;
-
-        ContentResolver contentResolver=getContentResolver();
+//        ToDoTaskDao.getInstance(this).insert(item);
         ContentValues contentValues=new ContentValues();
         contentValues.put(ToDoContentProvider.NAME_COLUMN,item.getName());
         contentValues.put(ToDoContentProvider.DATE_COLUMN,item.getCreateDate());
@@ -109,8 +122,8 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
         contentValues.put(ToDoContentProvider.INTERRUPT_DAY_COLUMN,item.getInterruptedDays());
         contentValues.put(ToDoContentProvider.IS_COMPLETED_COLUMN,item.isCompleted());
         contentResolver.insert(ToDoContentProvider.CONTENT_URI, contentValues);
-
         getLoaderManager().restartLoader(0,null,this);
+        
     }
 
     @Override
@@ -120,9 +133,10 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
     }
 
     @Override
-    //TODO 修改任务信息
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         restartInitTaskListAdapter(loader, cursor);
+//        pullableLayout.hide("SUCCESS");	
+        updateRefreshdedUI();
     }
 
     private void restartInitTaskListAdapter(Loader<Cursor> loader, Cursor cursor){
@@ -186,5 +200,23 @@ public class MainActivity extends Activity implements NewItemFragment.OnAddNewIt
         Intent newTaskIntent=new Intent(MainActivity.this,NewTaskActivity.class);
        
         return super.onOptionsItemSelected(item);
+    }
+    
+    /**
+     * 更新可下拉View的界面，隐藏下拉头
+     * 使用有问题
+     */
+    private void updateRefreshdedUI(){
+    	 handler=new Handler(){
+    		public void handleMessage(Message msg) {
+    			System.out.println("begin----");
+    			pullableLayout.hide("SUCCESS");	
+    		}
+    	};
+    	new Thread(){
+    		public void run(){
+    			handler.sendMessage(new Message());
+    		}
+    	}.start();
     }
 }

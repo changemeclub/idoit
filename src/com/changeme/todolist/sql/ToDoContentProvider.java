@@ -1,5 +1,7 @@
 package com.changeme.todolist.sql;
 
+import java.util.HashMap;
+
 import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -11,8 +13,6 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import java.util.HashMap;
-
 /**
  * Created by ldc on 2015/7/1.
  */
@@ -21,7 +21,7 @@ public class ToDoContentProvider extends ContentProvider {
     private static final int SINGlE_ROW=2;
     private static final int SEARCH=3;
 
-    private MyOpenSQLHelper myOpenSQLHelper;
+    public MyOpenSQLHelper myOpenSQLHelper;
 
     public static final String KEY_ID="_id";
     public static final String NAME_COLUMN="name";
@@ -102,6 +102,7 @@ public class ToDoContentProvider extends ContentProvider {
             default: throw  new IllegalArgumentException("Unsupported URI:");
         }
     }
+    
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
@@ -113,9 +114,7 @@ public class ToDoContentProvider extends ContentProvider {
 
         if(id>-1){
             Uri insertId= ContentUris.withAppendedId(CONTENT_URI,id);
-
             getContext().getContentResolver().notifyChange(uri,null);
-
             return insertId;
         }
         return null;

@@ -23,7 +23,10 @@ public class MyOpenSQLHelper extends SQLiteOpenHelper {
     public static final String TODAY_ISDO_COLUMN="today_isdo";
     public static final String HABBIT_COLUMN="is_habbit";
 
-
+    public MyOpenSQLHelper(Context context){
+    	super(context, null, null, VERSION, null);
+    }
+    
     public MyOpenSQLHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }

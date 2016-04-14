@@ -15,4 +15,7 @@
     <color name="btn_pressed_color">#008B00</color>
     <color  name="item_text_color">#2b2b2b</color>
     <color name="item_line_color">#c8c7cc</color>
+    
+    <color name="gray">#aaaaaa</color>
+    <color name="light_blue">#6593cb</color>
 </resources>

@@ -11,6 +11,8 @@ public final class R {
     public static final class anim {
         public static final int bottom_push_up_in=0x7f050000;
         public static final int layout_animiation=0x7f050001;
+        public static final int reverse_anim=0x7f050002;
+        public static final int rotating=0x7f050003;
     }
     public static final class array {
         public static final int pref_example_list_titles=0x7f0a0000;
@@ -26,10 +28,12 @@ public final class R {
         public static final int btn_normal_color=0x7f07000b;
         public static final int btn_pressed_color=0x7f07000c;
         public static final int circle_text=0x7f070004;
+        public static final int gray=0x7f07000f;
         public static final int head_text_color=0x7f070009;
         public static final int header_color=0x7f07000a;
         public static final int item_line_color=0x7f07000e;
         public static final int item_text_color=0x7f07000d;
+        public static final int light_blue=0x7f070010;
         public static final int line_color=0x7f070005;
         public static final int line_text_color=0x7f070003;
         public static final int setting_item_bg=0x7f070007;
@@ -59,36 +63,53 @@ public final class R {
         public static final int divider_vertical_dark=0x7f020005;
         public static final int doit=0x7f020006;
         public static final int ic_launcher=0x7f020007;
-        public static final int text_item_bg_round_rectangle=0x7f020008;
-        public static final int text_item_bg_white=0x7f020009;
-        public static final int timer_alert=0x7f02000a;
-        public static final int training_plan=0x7f02000b;
-        public static final int warning_alarm=0x7f02000c;
+        public static final int load_failed=0x7f020008;
+        public static final int load_succeed=0x7f020009;
+        public static final int loading=0x7f02000a;
+        public static final int pull_icon_big=0x7f02000b;
+        public static final int pullup_icon_big=0x7f02000c;
+        public static final int refresh_failed=0x7f02000d;
+        public static final int refresh_succeed=0x7f02000e;
+        public static final int refreshing=0x7f02000f;
+        public static final int text_item_bg_round_rectangle=0x7f020010;
+        public static final int text_item_bg_white=0x7f020011;
+        public static final int timer_alert=0x7f020012;
+        public static final int training_plan=0x7f020013;
+        public static final int warning_alarm=0x7f020014;
     }
     public static final class id {
-        public static final int NewItemFragment=0x7f0d0001;
-        public static final int action_add=0x7f0d0013;
-        public static final int action_settings=0x7f0d0012;
-        public static final int add_new_item=0x7f0d0006;
-        public static final int asyncProgress=0x7f0d0004;
-        public static final int asyncTextView=0x7f0d0003;
+        public static final int NewItemFragment=0x7f0d0004;
+        public static final int action_add=0x7f0d001c;
+        public static final int action_settings=0x7f0d001b;
+        public static final int add_new_item=0x7f0d000a;
+        public static final int asyncProgress=0x7f0d0008;
+        public static final int asyncTextView=0x7f0d0007;
+        public static final int doneListTab=0x7f0d0003;
         public static final int fragment_contactSearch=0x7f0d0000;
-        public static final int isCompleted=0x7f0d000c;
-        public static final int label_taskinfo_today=0x7f0d000e;
-        public static final int label_taskinfo_today_complete=0x7f0d0010;
-        public static final int menu_refresh=0x7f0d0015;
-        public static final int menu_search=0x7f0d0014;
-        public static final int menu_share=0x7f0d0016;
-        public static final int new_item_submit_btn=0x7f0d0008;
-        public static final int new_task=0x7f0d0009;
-        public static final int number_today=0x7f0d000f;
-        public static final int number_today_complete=0x7f0d0011;
-        public static final int one_status_name=0x7f0d0005;
-        public static final int slideTaskList=0x7f0d0002;
-        public static final int speechButton=0x7f0d0007;
-        public static final int taskName=0x7f0d000b;
-        public static final int taskStatus=0x7f0d000a;
-        public static final int taskTime=0x7f0d000d;
+        public static final int head_view=0x7f0d000d;
+        public static final int isCompleted=0x7f0d0015;
+        public static final int label_taskinfo_today=0x7f0d0017;
+        public static final int label_taskinfo_today_complete=0x7f0d0019;
+        public static final int menu_refresh=0x7f0d001e;
+        public static final int menu_search=0x7f0d001d;
+        public static final int menu_share=0x7f0d001f;
+        public static final int new_item_submit_btn=0x7f0d000c;
+        public static final int new_task=0x7f0d0012;
+        public static final int number_today=0x7f0d0018;
+        public static final int number_today_complete=0x7f0d001a;
+        public static final int one_status_name=0x7f0d0009;
+        public static final int pageTab=0x7f0d0001;
+        public static final int pull_icon=0x7f0d000e;
+        public static final int refresh_view=0x7f0d0005;
+        public static final int refreshing_icon=0x7f0d000f;
+        public static final int slideTaskList=0x7f0d0006;
+        public static final int speechButton=0x7f0d000b;
+        public static final int state_iv=0x7f0d0011;
+        public static final int state_tv=0x7f0d0010;
+        public static final int taskName=0x7f0d0014;
+        public static final int taskStatus=0x7f0d0013;
+        public static final int taskTime=0x7f0d0016;
+        public static final int todoListTab=0x7f0d0002;
     }
     public static final class layout {
         public static final int activity_contact_search=0x7f040000;
@@ -98,8 +119,9 @@ public final class R {
         public static final int activity_task_research=0x7f040004;
         public static final int group_status_item=0x7f040005;
         public static final int new_item=0x7f040006;
-        public static final int task_list_item=0x7f040007;
-        public static final int taskinfo_today=0x7f040008;
+        public static final int refresh_head=0x7f040007;
+        public static final int task_list_item=0x7f040008;
+        public static final int taskinfo_today=0x7f040009;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -120,33 +142,46 @@ public final class R {
         public static final int add_new_item_description=0x7f090004;
         public static final int app_name=0x7f090000;
         public static final int btn_close_task_info=0x7f09000b;
+        public static final int done_list_tab=0x7f090018;
         public static final int hello_world=0x7f090001;
         public static final int label_task_date=0x7f09000a;
         public static final int label_task_name=0x7f090009;
+        public static final int load_fail=0x7f090022;
+        public static final int load_succeed=0x7f090021;
+        public static final int loading=0x7f090020;
         public static final int menu_refresh=0x7f09000e;
         public static final int menu_search=0x7f09000f;
         public static final int new_item_submit=0x7f090012;
-        public static final int pref_default_display_name=0x7f09001c;
-        public static final int pref_description_social_recommendations=0x7f09001a;
+        public static final int pref_default_display_name=0x7f090028;
+        public static final int pref_description_social_recommendations=0x7f090026;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f09001e;
+        public static final int pref_header_data_sync=0x7f09002a;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f090018;
+        public static final int pref_header_general=0x7f090024;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f090021;
-        public static final int pref_ringtone_silent=0x7f090024;
-        public static final int pref_title_add_friends_to_messages=0x7f09001d;
-        public static final int pref_title_display_name=0x7f09001b;
-        public static final int pref_title_new_message_notifications=0x7f090022;
-        public static final int pref_title_ringtone=0x7f090023;
-        public static final int pref_title_social_recommendations=0x7f090019;
-        public static final int pref_title_sync_frequency=0x7f09001f;
-        public static final int pref_title_system_sync_settings=0x7f090020;
-        public static final int pref_title_vibrate=0x7f090025;
+        public static final int pref_header_notifications=0x7f09002d;
+        public static final int pref_ringtone_silent=0x7f090030;
+        public static final int pref_title_add_friends_to_messages=0x7f090029;
+        public static final int pref_title_display_name=0x7f090027;
+        public static final int pref_title_new_message_notifications=0x7f09002e;
+        public static final int pref_title_ringtone=0x7f09002f;
+        public static final int pref_title_social_recommendations=0x7f090025;
+        public static final int pref_title_sync_frequency=0x7f09002b;
+        public static final int pref_title_system_sync_settings=0x7f09002c;
+        public static final int pref_title_vibrate=0x7f090031;
+        /**  下拉刷新配置项  ，注意这里要写注释 
+         */
+        public static final int pull_to_refresh=0x7f090019;
+        public static final int pullup_to_load=0x7f09001e;
+        public static final int refresh_fail=0x7f09001d;
+        public static final int refresh_succeed=0x7f09001c;
+        public static final int refreshing=0x7f09001b;
+        public static final int release_to_load=0x7f09001f;
+        public static final int release_to_refresh=0x7f09001a;
         public static final int search_hint=0x7f090006;
         public static final int task_complete=0x7f090013;
         public static final int task_name_example=0x7f090015;
@@ -156,10 +191,11 @@ public final class R {
         public static final int title_activity_contact_search=0x7f09000c;
         public static final int title_activity_main_activity2=0x7f090005;
         public static final int title_activity_my=0x7f09000d;
-        public static final int title_activity_my_preference=0x7f090017;
+        public static final int title_activity_my_preference=0x7f090023;
         public static final int title_activity_new_task=0x7f090014;
         public static final int title_activity_task_research=0x7f090007;
         public static final int title_activity_to_do_info=0x7f090008;
+        public static final int todo_list_tab=0x7f090017;
     }
     public static final class style {
         /** 
